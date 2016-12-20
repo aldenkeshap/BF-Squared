@@ -88,7 +88,7 @@ public class BruteForceBF {
 		}
 	}
 	public static void main(String[] args) {
-    System.out.println("Test with BruteForce(\"String To Brute Generate\")");
+    		System.out.println("Test with BruteForce(\"String To Brute Generate\")");
 	}
 
 }
