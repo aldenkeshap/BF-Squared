@@ -91,10 +91,12 @@ public class BruteForceBF {
     			(!Patterns.second.matcher(code).find() && 
     					Patterns.third.matcher(code).find());
     }
-	public static String BruteForce(String text) {
+	public static String BruteForce(String text, int time, int pos) {
 		System.out.println("Starting to Brute Force " + text);
-		int i = -1;
-		while (true) {
+		long start = System.currentTimeMillis();
+		int i = pos - 1;
+		String finalCode = "";
+		while (System.currentTimeMillis() - start < time) {
 			i++;
 			String code = Integer.toOctalString(i);
 			if (code.contains("7")) {continue;}
@@ -116,14 +118,21 @@ public class BruteForceBF {
 			try {value = interpret(code);}
 			catch (Exception e) {value = "";}
 			if (value.equals(text)) {
-				return code;
+				finalCode = code;
+				break;
 			}
+		}
+		if (finalCode != "") {
+			return finalCode;
+		} else {
+			return "Was not given enough time to finish, ended at " + Integer.toString(i);
 		}
 	}
 	public static void main(String[] args) {
 		//System.out.println(interpret("+[>>>--]."));
 		long start = System.currentTimeMillis();
-		System.out.println(BruteForce("ú"));
+		System.out.println(BruteForce("ú", 1000, 289830));
+		//System.out.println(BruteForce("ÿ", 15000));
 		long end = System.currentTimeMillis();
 		System.out.println("Done, started at " + Long.toString(start) + " ended at " + Long.toString(end) + " which is " + Long.toString(end-start));
 		java.awt.Toolkit.getDefaultToolkit().beep();
